@@ -39,7 +39,8 @@
 		"typescript": "^5.0.4"
 	},
 	"lint-staged": {
-		"**/*": "prettier --write --ignore-unknown"
+		"*.ts": "eslint --cache --fix",
+		"*.{ts,tsx,md}": "prettier --write"
 	},
 	"dependencies": {
 		"express": "^4.18.2"
