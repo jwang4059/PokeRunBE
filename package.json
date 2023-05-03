@@ -45,10 +45,12 @@
 		"*.{ts,tsx,md}": "prettier --write"
 	},
 	"dependencies": {
+		"axios": "^1.4.0",
+		"axios-cache-interceptor": "^1.0.1",
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
 		"helmet": "^6.1.5",
-		"pokedex-promise-v2": "^4.1.1"
+		"pokenode-ts": "^1.18.3"
 	}
 }

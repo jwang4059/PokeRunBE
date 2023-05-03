@@ -1,12 +1,13 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import Pokedex from "pokedex-promise-v2";
+import { PokemonClient } from "pokenode-ts";
 import * as dotenv from "dotenv";
+import { getRandomPokemon } from "./src/controllers/pokemon.controller.js";
 
 dotenv.config();
 
-const P = new Pokedex();
+const api = new PokemonClient();
 const app = express();
 
 app.use(cors());
@@ -16,17 +17,8 @@ app.get("/", (_, res) => {
 	res.send("Hello World!");
 });
 
-app.get("/random", (_, res) => {
-	(async () => {
-		const pokedexStart = 1;
-		const pokedexEnd = 386;
-		const randomPokemonId =
-			Math.floor(Math.random() * (pokedexEnd - pokedexStart + 1)) +
-			pokedexStart;
-
-		const randomPokemon = await P.getPokemonByName(randomPokemonId);
-		res.send(randomPokemon);
-	})();
+app.get("/random", async (_, res) => {
+	await getRandomPokemon(res, api);
 });
 
 export default app;
