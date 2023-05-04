@@ -19,7 +19,8 @@ Pokemon DB Model
 - Move2 ID + PP
 - Move3 ID + PP
 - Move4 ID + PP
-- Egg Tier
+- Egg Tier (2k, 5k, 10k)
+- Pokemon Tier (based on competitiveness/popularity)
 
 Pokemon Functions
 - createPokemon (catch pokemon)
