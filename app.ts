@@ -3,7 +3,10 @@ import cors from "cors";
 import helmet from "helmet";
 import { PokemonClient } from "pokenode-ts";
 import * as dotenv from "dotenv";
-import { getRandomPokemon } from "./src/controllers/pokemon.controller.js";
+import {
+	getRandomEgg,
+	getRandomPokemon,
+} from "./src/controllers/pokemon.controller.js";
 
 dotenv.config();
 
@@ -19,6 +22,10 @@ app.get("/", (_, res) => {
 
 app.get("/random", async (_, res) => {
 	await getRandomPokemon(res, api);
+});
+
+app.get("/egg", async (_, res) => {
+	getRandomEgg(res);
 });
 
 export default app;
