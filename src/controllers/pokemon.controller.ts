@@ -28,8 +28,15 @@ export const getRandomEgg = (res: Response) => {
 	// Generate random rarity
 	const randomNumber = generateRandomWeightedNumber(weights);
 
-	// Get list of pokemons within rarity
-	// Generate random pokemon with rarity
+	// Get number of pokemons within rarity (should get length from sql db)
+	const numberOfPokemons = 5;
+
+	// Generate random pokemon with rarity (use prev number as max)
+	const randomPokemonNumber = generateRandomNumber(0, numberOfPokemons);
+
+	// If possible, get pokemon without retrieving entire list of pokemons
+	// Else, get entire list and use randomPokemonNumber to get pokemon
+
 	// Store random pokemon in pc (or party if empty)
 	res.send(`Number => ${randomNumber}`);
 };
