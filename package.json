@@ -51,6 +51,9 @@
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
 		"helmet": "^6.1.5",
-		"pokenode-ts": "^1.18.3"
+		"pg": "^8.10.0",
+		"pokenode-ts": "^1.18.3",
+		"reflect-metadata": "^0.1.13",
+		"typeorm": "^0.3.15"
 	}
 }
