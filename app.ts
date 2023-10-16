@@ -1,32 +1,39 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { PokemonClient } from "pokenode-ts";
-import * as dotenv from "dotenv";
-import {
-	getRandomEgg,
-	getRandomPokemon,
-} from "./src/controllers/pokemon.controller.js";
+import { MainClient } from "pokenode-ts";
+import appDataSource from "./src/data-source.js";
+import User from "./src/controllers/user.controller.js";
+import Pokemon from "./src/controllers/pokemon.controller.js";
 
-dotenv.config();
+// Create client for Pokemon API
+const api = new MainClient();
 
-const api = new PokemonClient();
+// Create and setup express app
 const app = express();
-
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
+// Register routes
 app.get("/", (_, res) => {
 	res.send("Hello World!");
 });
 
-app.get("/random", async (_, res) => {
-	await getRandomPokemon(res, api);
+app.post("/register", (req, res) => {
+	User.register(req, res, appDataSource);
 });
 
-app.get("/egg", async (_, res) => {
-	getRandomEgg(res);
+app.post("/login", (req, res) => {
+	User.login(req, res, appDataSource);
+});
+
+app.post("/reward", (req, res) => {
+	Pokemon.getPokemonReward(req, res, appDataSource, api);
+});
+
+app.post("/deactivate", (req, res) => {
+	User.deactivate(req, res, appDataSource);
 });
 
 export default app;
