@@ -1,4 +1,3 @@
-import { Genders } from "pokenode-ts";
 import {
 	Check,
 	Column,
@@ -27,8 +26,8 @@ class MyPokemon {
 	@Column("smallint")
 	level!: number;
 
-	@Column("enum", { name: "gender_id", enum: Genders, default: Genders.FEMALE })
-	genderId!: Genders;
+	@Column("smallint", { name: "gender_id", default: 1 })
+	genderId!: number;
 
 	@Column("smallint", { name: "ability_id" })
 	abilityId!: number;

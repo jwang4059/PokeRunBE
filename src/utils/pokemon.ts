@@ -1,9 +1,9 @@
 import {
-	Genders,
+	GENDERS,
 	GrowthRateExperienceLevel,
 	MainClient,
 	MoveClient,
-	Natures,
+	NATURES,
 	Pokemon,
 	PokemonAbility,
 	PokemonClient,
@@ -82,13 +82,13 @@ export const getRandomLevel = (min = 1, max = 100, weights = []) => {
 };
 
 export const getRandomGenderId = (genderRate: number) => {
-	if (genderRate === -1) return Genders.GENDERLESS;
+	if (genderRate === -1) return GENDERS.GENDERLESS;
 
 	const rateOfFemale = genderRate / 8;
 	const rateOfMale = 1 - rateOfFemale;
 	const genderId = generateRandomWeightedNumber([rateOfFemale, rateOfMale]);
 
-	return genderId === 1 ? Genders.FEMALE : Genders.MALE;
+	return genderId === 1 ? GENDERS.FEMALE : GENDERS.MALE;
 };
 
 export const getRandomAbilityId = (abilities: PokemonAbility[]) => {
@@ -101,7 +101,7 @@ export const getRandomAbilityId = (abilities: PokemonAbility[]) => {
 };
 
 export const getRandomNatureId = () =>
-	generateRandomNumber(1, Object.keys(Natures).length);
+	generateRandomNumber(1, Object.keys(NATURES).length);
 
 export const getRandomItemId = (items: PokemonHeldItem[]) => {
 	const itemProbabilities = items.map((item) => {
