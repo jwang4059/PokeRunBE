@@ -97,15 +97,12 @@ const getPokemonReward = async (
 					pokemon.species.name
 				);
 
-				const growthRate = await api.pokemon.getGrowthRateByName(
-					species.growth_rate.name
-				);
+				const [growthRate, moves] = await Promise.all([
+					api.pokemon.getGrowthRateByName(species.growth_rate.name),
+					getLatestMoves(pokemon.moves, levelFirstCaught, api.move),
+				]);
 
-				const [move1, move2, move3, move4] = await getLatestMoves(
-					pokemon.moves,
-					levelFirstCaught,
-					api.move
-				);
+				const [move1, move2, move3, move4] = moves;
 
 				return pokemonRepository.create({
 					name: pokemon.name,
