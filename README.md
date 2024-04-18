@@ -6,9 +6,7 @@ Backend API for PokeRun. Made with Node.js, Express.js, PostgreSQL, and TypeOrm
 
 - [Introduction](#introduction)
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+- [Development](#development)
 
 ## Introduction
 
@@ -23,21 +21,22 @@ Backend API for PokeRun that is used to manage players and Pokemons within the w
 | /reward     |
 | /deactivate |
 
-## Installation
+## Development:
+
+Clone the repo:
 
 ```bash
 git clone https://github.com/jwang4059/PokeRunBE.git
+cd PokeRunBE
+```
+
+Install dependencies:
+
+```bash
 npm install
 ```
 
-## Usage
-
-```bash
-npm run build
-npm start
-```
-
-## Contributing
+Start the dev server:
 
 ```bash
 npm run watch

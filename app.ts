@@ -5,6 +5,7 @@ import { MainClient } from "pokenode-ts";
 import appDataSource from "./src/data-source.js";
 import User from "./src/controllers/user.controller.js";
 import Pokemon from "./src/controllers/pokemon.controller.js";
+import { getRandomPokemon } from "./src/utils/pokemon.js";
 
 // Create client for Pokemon API
 const api = new MainClient();
@@ -16,8 +17,9 @@ app.use(helmet());
 app.use(express.json());
 
 // Register routes
-app.get("/", (_, res) => {
-	res.send("Hello World!");
+app.get("/", async (_, res) => {
+	const pokemon = await getRandomPokemon(api.pokemon);
+	res.json(pokemon);
 });
 
 app.post("/register", (req, res) => {
