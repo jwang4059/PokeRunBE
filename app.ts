@@ -12,14 +12,18 @@ const api = new MainClient();
 
 // Create and setup express app
 const app = express();
-app.use(cors());
+app.use(
+	cors({
+		origin: process.env.CORS_ORIGIN,
+		credentials: true,
+	})
+);
 app.use(helmet());
 app.use(express.json());
 
 // Register routes
 app.get("/", async (_, res) => {
-	const pokemon = await getRandomPokemon(api.pokemon);
-	res.json(pokemon);
+	res.send("PokeRun BE API");
 });
 
 app.post("/register", (req, res) => {
@@ -36,6 +40,11 @@ app.post("/reward", (req, res) => {
 
 app.post("/deactivate", (req, res) => {
 	User.deactivate(req, res, appDataSource);
+});
+
+app.get("/random", async (_, res) => {
+	const pokemon = await getRandomPokemon(api.pokemon);
+	res.json(pokemon);
 });
 
 export default app;
